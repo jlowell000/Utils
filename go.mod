@@ -1,4 +1,4 @@
-module jlowell000.github.io/init
+module jlowell000.github.io/utils
 
 go 1.21.5
 
