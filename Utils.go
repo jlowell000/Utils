@@ -5,8 +5,8 @@ import (
 )
 
 type Pair[T any, U any] struct {
-	first  T
-	second U
+	First  T
+	Second U
 }
 
 func ForSquare(size int, action func(int, int)) {
@@ -111,8 +111,8 @@ func OrderedMapWG[T any, U any](arr []T, action func(T) U) []U {
 			defer wg.Done()
 			for input := range inputs {
 				outputs <- Pair[int, U]{
-					first:  input.first,
-					second: action(input.second),
+					First:  input.First,
+					Second: action(input.Second),
 				}
 			}
 		}()
@@ -120,8 +120,8 @@ func OrderedMapWG[T any, U any](arr []T, action func(T) U) []U {
 
 	for i, a := range arr {
 		inputs <- Pair[int, T]{
-			first:  i,
-			second: a,
+			First:  i,
+			Second: a,
 		}
 	}
 	close(inputs)
@@ -132,7 +132,7 @@ func OrderedMapWG[T any, U any](arr []T, action func(T) U) []U {
 	}()
 
 	for o := range outputs {
-		result[o.first] = o.second
+		result[o.First] = o.Second
 	}
 	return result
 }
